@@ -231,7 +231,7 @@ def rank_categories_by_difference(all_texts_data, original_differences, steered_
         original_sorted_genres = sorted(original_genre_means.items(), key=lambda x: x[1], reverse=True)
 
     if remove_low_count:
-        filtered_genres = [(genre, mean_sim) for genre, mean_sim in sorted_genres  ## Dette kan cleanes opp
+        filtered_genres = [(genre, mean_sim) for genre, mean_sim in sorted_genres
                            if len(genre_differences[genre]) >= 25]
         if original_differences is not None:
             # Filter original genres similarly
@@ -325,6 +325,14 @@ def plot_bar_category_ranking(sorted_genres, original_genre_differences, genre_d
     Returns:
         plotly.graph_objects.Figure or None: Figure object if successful, None if no valid data.
     """
+
+    # Flip the cosine differences back for plotting if type is cosine
+    if type == "cosine":
+        # Apply 1 - x to each value in the lists within the dictionaries
+        for genre in original_genre_differences:
+            original_genre_differences[genre] = [1 - x for x in original_genre_differences[genre]]
+        for genre in genre_differences:
+            genre_differences[genre] = [1 - x for x in genre_differences[genre]]
     
     if remove_low_count:
         filtered_genres = [(genre, mean_sim) for genre, mean_sim in sorted_genres 
@@ -728,16 +736,16 @@ if __name__ == "__main__":
     data = import_embedding_data_from_pkl('Test_export_embeddings.pkl', model=True, embeddings=True, encoded_input=True, all_texts_data=True)
     model, original_embeddings, encoded_input, all_texts_data = data
 
-    feature = "Love"
+    feature = "War"
     type = "cosine" # l1, l2 or cosine
-    layer_to_steer = 10  # Change this to the layer you want to analyze
+    layer_to_steer = 8  # Change this to the layer you want to analyze
     steering_coefficient = 1  # Adjust steering coefficient as needed
 
     steering_vector = import_steering_vector_from_pkl('steering_vector.pkl', layer_to_steer=layer_to_steer, feature_name=feature)
 
     # Steer using a vector
     steered_embeddings = get_steered_embeddings_vector(model, encoded_input, layer_to_steer=layer_to_steer, steering_coefficient=steering_coefficient, 
-                                                steering_vector=steering_vector, normalize=True)
+                                               steering_vector=steering_vector, normalize=True)
 
     # Steer on specific neuron
     #steered_embeddings = get_steered_embeddings_neuron(model, encoded_input, layer_to_steer=layer_to_steer, 
@@ -759,7 +767,7 @@ if __name__ == "__main__":
     print("\nRanking categories by mean difference...")
     info_string = f'Steered layer: {layer_to_steer} | Coeff: {steering_coefficient}'
     filtered_genres, original_filtered_genres, genre_differences, original_genre_differences, genre_means = rank_categories_by_difference(all_texts_data, 
-                                                                original_differences, steered_differences, info_string, type, print_results=True, 
+                                                                original_differences, steered_differences, type, info_string, print_results=True, 
                                                             remove_low_count=True, plot_graph=True)
 
     # Print most shifted categories

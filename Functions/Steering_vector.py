@@ -249,8 +249,8 @@ def import_steering_vector_from_pkl(file_path, feature_name=None, layer_to_steer
 if __name__ == "__main__":
     # Example usage
     # Import feature texts
-    feature = "Love"
-    layer_to_steer = 10
+    feature = "War"
+    layer_to_steer = 5
 
 
     feature_texts, opposite_feature_texts = import_feature_texts(f"../Features/{feature}")
