@@ -262,6 +262,17 @@ if __name__ == "__main__":
     # Export steering vector to pkl
     export_steering_vector_to_pkl(steering_vector, "steering_vector.pkl", feature_name=feature, layer_to_steer=layer_to_steer)
 
+
+    # Generate other necessary steering vectors
+    steering_vector_war = get_steering_vector(model_name, import_feature_texts("../Features/War")[0], layer_to_steer=10, normalize=True)
+    steering_vector_norway = get_steering_vector(model_name, import_feature_texts("../Features/Norway")[0], layer_to_steer=11, normalize=True)
+    steering_vector_love = get_steering_vector(model_name, import_feature_texts("../Features/Love")[0], layer_to_steer=11, normalize=True)
+
+    # Export the generated steering vectors to the pkl file
+    export_steering_vector_to_pkl(steering_vector_war, "steering_vector.pkl", feature_name="War", layer_to_steer=10)
+    export_steering_vector_to_pkl(steering_vector_norway, "steering_vector.pkl", feature_name="Norway", layer_to_steer=11)
+    export_steering_vector_to_pkl(steering_vector_love, "steering_vector.pkl", feature_name="Love", layer_to_steer=11)
+    
     # Import steering vector from pkl - examples:
     # Get specific vector for specific layer
     #imported_steering_vector = import_steering_vector_from_pkl("steering_vector.pkl", feature_name="War", layer_to_steer=11)

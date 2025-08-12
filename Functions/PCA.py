@@ -281,10 +281,12 @@ if __name__ == "__main__":
     info_string = f"| Layer: {layer_to_steer} | Feature: {feature} | Steering: {steering_coefficient}" # Vector steering
 
     # Plot PCA with fixed KMeans clustering
+    print("Plotting PCA with fixed KMeans clustering...")
     plot_pca_fixed_kmeans(original_embeddings, steered_embeddings, all_texts_data, info_string,
                            text_range=None, projected=True, n_clusters=5, lines=True, Write=False)
                         
     
     # Plot PCA with labeled projection
+    print("Plotting PCA with labeled projection...")
     plot_pca_labeled_projection(original_embeddings, steered_embeddings, all_texts_data, info_string, 
                                 steering_vector=None, text_range=None, lines=True, Write=False)
