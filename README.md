@@ -14,6 +14,10 @@ Here you will find instructions on how to clone, install and run neccessary file
 - [Installation](#installation)
 - [Folder Structure](#folder-structure)
 - [Working with Features](#working-with-features)
+- [Workflow](#workflow)
+
+## Project prerequisits
+What is needed before usage and install requirements?
 
 ## Installation
 
@@ -28,9 +32,9 @@ Here you will find instructions on how to clone, install and run neccessary file
    pip install -r requirements.txt
    ```
 
-3. Run the project:
+3. Run the project (see [workflow](#workflow)):
    ```bash
-   python main.py
+   python file_name.py
    ```
 
 
@@ -53,7 +57,6 @@ Here you will find instructions on how to clone, install and run neccessary file
 ### `Features/`
 - **Purpose:** Contains handcrafted features and their opposites, organized by category.
 - **Subfolders:**
-  - `Baseline/` – Reference features.
   - `Love/`, `Norway/`, `War/` – Genre-specific features.
     - `feature.txt`: List of keywords or expressions representing the theme.
     - `opposite.txt`: Keywords representing the opposite or contrast.
@@ -79,8 +82,6 @@ See [Working with Features](#working-with-features) for details on how to add yo
 
 ---
 
-Let me know if you'd like help generating a `requirements.txt`, usage instructions, or contribution guidelines!
-
 
 ## Working with Features
 
@@ -92,8 +93,17 @@ To add a new theme:
 1. Create a new folder: `Features/Horror/`
 2. Add your `feature.txt` and optionally `opposite.txt`.
 
+## Workflow:
+In order to start analyzing, some python files must be run in a specific order. Here is the necessary workflow:
+1. `Embeddings.py` - Run this file to generate embeddings of your dataset. You may need to modify the `import` function, and the file name in `line 250`.
+2. `Steering_vector.py` - Run this file to generate steering vectors. You may need to run this multiple times for different layers (change `line 253`) to generate the necessary steering vectors. The necessary steering vectors to run our examples are: 
+War, Layers: [10, 11]
+Love, Layers: [11]
 
+3. You are now ready to run the other files from the `Functions` folder.
 
+## Licence
+The code in this repo is free to use. Please give us an acknowledgement if you use any of our code.
 
 ## Author
 

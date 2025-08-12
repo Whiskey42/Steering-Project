@@ -250,7 +250,7 @@ if __name__ == "__main__":
     # Example usage
     # Import feature texts
     feature = "War"
-    layer_to_steer = 5
+    layer_to_steer = 11
 
 
     feature_texts, opposite_feature_texts = import_feature_texts(f"../Features/{feature}")

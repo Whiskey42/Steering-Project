@@ -738,7 +738,7 @@ if __name__ == "__main__":
 
     feature = "War"
     type = "cosine" # l1, l2 or cosine
-    layer_to_steer = 8  # Change this to the layer you want to analyze
+    layer_to_steer = 11  # Change this to the layer you want to analyze
     steering_coefficient = 1  # Adjust steering coefficient as needed
 
     steering_vector = import_steering_vector_from_pkl('steering_vector.pkl', layer_to_steer=layer_to_steer, feature_name=feature)

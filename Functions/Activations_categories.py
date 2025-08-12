@@ -349,14 +349,14 @@ if __name__ == "__main__":
     # Import the data
     data = import_embedding_data_from_pkl("Test_export_embeddings.pkl", model=True, model_output=True, encoded_input=True, all_texts_data=True)
     model, model_output, encoded_input, all_texts_data = data
-    feature = Feature = "Norway"
+    feature = "War"
 
 
     layer_to_steer = 10  # Change this to the layer you want to analyze, can not be the last layer. Steering in the next to last layer
     # will affect the activations of neurons in the last layer.
     layer_to_plot = 11  # Choose what layer to plot the category activations from, 
 
-    steering_vector = import_steering_vector_from_pkl("steering_vector.pkl", feature_name=Feature, layer_to_steer=layer_to_steer)
+    steering_vector = import_steering_vector_from_pkl("steering_vector.pkl", feature_name=feature, layer_to_steer=layer_to_steer)
     # Get the category activations from the hidden states of a specific layer
     steering_coefficient = 7
     category = "Biography"  # Change this to the category you want to visualize
