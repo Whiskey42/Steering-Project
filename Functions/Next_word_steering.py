@@ -208,6 +208,55 @@ def display_steered_next_tokens(model, tokenizer, prompt, layer_to_steer, steeri
     print(f"\nTop {k} next-token predictions:\n")
     for token, prob in zip(topk_tokens, topk_probs):
         print(f"{token!r}: {prob.item():.4f}")
+    
+
+def generate_text(model, tokenizer, prompt, max_tokens=20, stop_token=".", temperature=1.0):
+    """
+    Generate text from a prompt using the specified model.
+
+    Args:
+        model: The causal language model.
+        tokenizer: The tokenizer corresponding to the model.
+        prompt (str): Input text prompt to continue.
+        max_tokens (int, optional): Maximum number of tokens to generate. Defaults to 20.
+        stop_token (str, optional): Token to stop generation. Defaults to ".".
+        temperature (float, optional): Sampling temperature for randomness. Defaults to 1.0.
+    
+    Returns:
+        str: Generated text based on prompt.
+    
+    Note:
+        Temperature controls randomness: >1.0 more random, <1.0 more deterministic, →0 greedy.
+        """
+    
+    input_ids = tokenizer(prompt, return_tensors="pt").input_ids
+    generated = input_ids.clone()
+
+    model.eval()
+    for _ in range(max_tokens):
+        # Forward pass to get logits
+        with torch.no_grad():
+            outputs = model(generated)
+            logits = outputs.logits
+
+        # Get next token
+        if temperature == 0:
+            next_token_id = torch.argmax(logits[0, -1, :], dim=-1, keepdim=True)
+        else:
+            next_token_logits = logits[0, -1, :] / temperature
+            probs = torch.softmax(next_token_logits, dim=-1)
+            next_token_id = torch.multinomial(probs, num_samples=1)
+
+        # Append next token
+        generated = torch.cat([generated, next_token_id.unsqueeze(0)], dim=1)
+
+        # Decode and check for stop_token
+        decoded_token = tokenizer.decode(next_token_id[0])
+        if stop_token and decoded_token.strip() == stop_token:
+            break
+
+    # Final decode
+    return tokenizer.decode(generated[0], skip_special_tokens=True)
 
 
 
@@ -242,9 +291,12 @@ def generate_steered_text(model, tokenizer, prompt, layer_to_steer, steering_vec
         logits, _, _, _ = steer_with_vector_gpt(model, tokenizer, prompt_text, layer_to_steer, steering_vector, steering_coefficient)
 
         # Get next token
-        next_token_logits = logits[0, -1, :] / temperature
-        probs = torch.softmax(next_token_logits, dim=-1)
-        next_token_id = torch.multinomial(probs, num_samples=1)
+        if temperature == 0:
+            next_token_id = torch.argmax(logits[0, -1, :], dim=-1, keepdim=True)
+        else:
+            next_token_logits = logits[0, -1, :] / temperature
+            probs = torch.softmax(next_token_logits, dim=-1)
+            next_token_id = torch.multinomial(probs, num_samples=1)
 
         # Append next token
         generated = torch.cat([generated, next_token_id.unsqueeze(0)], dim=1)
