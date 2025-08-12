@@ -16,7 +16,7 @@ Here you will find instructions on how to clone, install and run neccessary file
 - [Folder Structure](#folder-structure)
 - [Working with Features](#working-with-features)
 - [Workflow](#workflow)
-- [License](#licence)
+- [License](#license)
 
 ## Project Prerequisites
 Before installation, make sure you have:
