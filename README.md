@@ -106,9 +106,10 @@ To add a new theme:
 If you want to explore results interactively, open any notebook in `Showcase Notebooks/` with Jupyter.
 In order to start analyzing, some python files must be run in a specific order. Here is the necessary workflow:
 1. `Embeddings.py` - Run this file to generate embeddings of your dataset. You may need to modify the `import_data` function, and the file name at the bottom of the file.
-2. `Steering_vector.py` - Run this file to generate steering vectors. You may need to run this multiple times for different layers to generate the necessary steering vectors (change at the bottom of the file). The necessary steering vectors to run our examples are: 
+2. `Steering_vector.py` - Run this file to generate steering vectors. You may need to run this multiple times for different layers to generate the necessary steering vectors (change at the bottom of the file). The necessary steering vectors to run our examples, which are already created in the `steering_vector.pkl` are: 
 - War, Layers: [10, 11]
 - Love, Layers: [11]
+- Norway, Layers: [11]
 
 3. You are now ready to run the other files from the `Functions` folder.
 
