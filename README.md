@@ -113,7 +113,7 @@ In order to start analyzing, some python files must be run in a specific order. 
 3. You are now ready to run the other files from the `Functions` folder.
 
 ## License
-This project is licensed under the [MIT License](license).
+This project is licensed under the [MIT License](License).
 
 
 ## Authors
