@@ -285,7 +285,7 @@ def plot_2D_distance_projection(model, encoded_input, original_embeddings, all_t
             hoverinfo='none'))
 
     fig.update_layout(
-        title=f'2D Semantic Projection -- Steering feature: {steering_feature} | Comparison feature: {comparison_feature} | Distance type: {type.upper()} | Layer: {layer_to_steer} | Coeff: {steering_coefficient}',
+        title=f'2D Projection - Steering: {steering_feature} | Comparison: {comparison_feature} | Distance: {type.upper()} | Layer: {layer_to_steer} | Coeff: {steering_coefficient}',
         width=900,
         height=700,
         xaxis_title=f'Distance to "{steering_feature}" ({type.upper()})',
