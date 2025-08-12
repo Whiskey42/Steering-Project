@@ -18,12 +18,15 @@ Here you will find instructions on how to clone, install and run neccessary file
 - [Workflow](#workflow)
 - [License](#licence)
 
-## Project prerequisits
+## Project Prerequisites
 Before installation, make sure you have:
 - Python 3.10 or higher
 - pip 22+
 - Git
+- (Optional) CUDA-compatible GPU with the correct PyTorch build for faster embedding generation ([install guide](https://pytorch.org/get-started/locally/))
 - Jupyter Notebook or Jupyterlab (for `.ipynb` notebooks)
+
+You will also need a dataset in a specific format. Please refer to #Data Import in `Showcase Notebooks/Notebook 1`
 
 ## Installation
 
@@ -100,17 +103,18 @@ To add a new theme:
 2. Add your `feature.txt` and optionally `opposite.txt`.
 
 ## Workflow:
-Please refer to `Showcase Notebooks/` for necessary details on how to run specific functions.
+If you want to explore results interactively, open any notebook in `Showcase Notebooks/` with Jupyter.
 In order to start analyzing, some python files must be run in a specific order. Here is the necessary workflow:
-1. `Embeddings.py` - Run this file to generate embeddings of your dataset. You may need to modify the `import_data` function in `line 31`, and the file name in `line 250`.
-2. `Steering_vector.py` - Run this file to generate steering vectors. You may need to run this multiple times for different layers (change `line 252` and `line 253`) to generate the necessary steering vectors. The necessary steering vectors to run our examples are: 
+1. `Embeddings.py` - Run this file to generate embeddings of your dataset. You may need to modify the `import_data` function, and the file name at the bottom of the file.
+2. `Steering_vector.py` - Run this file to generate steering vectors. You may need to run this multiple times for different layers to generate the necessary steering vectors (change at the bottom of the file). The necessary steering vectors to run our examples are: 
 - War, Layers: [10, 11]
 - Love, Layers: [11]
 
 3. You are now ready to run the other files from the `Functions` folder.
 
-## Licence
-The code in this repo is free to use. Please give us an acknowledgement if you use any of our code.
+## License
+This project is licensed under the [MIT License](LICENSE).
+
 
 ## Authors
 
