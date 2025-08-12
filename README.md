@@ -11,13 +11,19 @@ Here you will find instructions on how to clone, install and run neccessary file
 
 
 ## Table of Contents
+- [Project prerequisits](#project-prerequisits)
 - [Installation](#installation)
 - [Folder Structure](#folder-structure)
 - [Working with Features](#working-with-features)
 - [Workflow](#workflow)
+- [License](#licence)
 
 ## Project prerequisits
-What is needed before usage and install requirements?
+Before installation, make sure you have:
+- Python 3.10 or higher
+- pip 22+
+- Git
+- Jupyter Notebook or Jupyterlab (for `.ipynb` notebooks)
 
 ## Installation
 
@@ -94,17 +100,18 @@ To add a new theme:
 2. Add your `feature.txt` and optionally `opposite.txt`.
 
 ## Workflow:
+Please refer to `Showcase Notebooks/` for necessary details on how to run specific functions.
 In order to start analyzing, some python files must be run in a specific order. Here is the necessary workflow:
-1. `Embeddings.py` - Run this file to generate embeddings of your dataset. You may need to modify the `import` function, and the file name in `line 250`.
-2. `Steering_vector.py` - Run this file to generate steering vectors. You may need to run this multiple times for different layers (change `line 253`) to generate the necessary steering vectors. The necessary steering vectors to run our examples are: 
-War, Layers: [10, 11]
-Love, Layers: [11]
+1. `Embeddings.py` - Run this file to generate embeddings of your dataset. You may need to modify the `import_data` function in `line 31`, and the file name in `line 250`.
+2. `Steering_vector.py` - Run this file to generate steering vectors. You may need to run this multiple times for different layers (change `line 252` and `line 253`) to generate the necessary steering vectors. The necessary steering vectors to run our examples are: 
+- War, Layers: [10, 11]
+- Love, Layers: [11]
 
 3. You are now ready to run the other files from the `Functions` folder.
 
 ## Licence
 The code in this repo is free to use. Please give us an acknowledgement if you use any of our code.
 
-## Author
+## Authors
 
-Maintained by [@username](https://github.com/username).
+Maintained by [@Whiskey42](https://github.com/Whiskey42) & [@minamalthes](https://github.com/minamalthes)
