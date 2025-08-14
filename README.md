@@ -11,7 +11,7 @@ Here you will find instructions on how to clone, install and run neccessary file
 
 
 ## Table of Contents
-- [Project prerequisits](#project-prerequisits)
+- [Project prerequisites](#project-prerequisites)
 - [Installation](#installation)
 - [Folder Structure](#folder-structure)
 - [Working with Features](#working-with-features)
